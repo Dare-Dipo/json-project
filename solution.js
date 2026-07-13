@@ -13,8 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 let data;
 
 app.get("/", (req, res) => {
-  res.render("solution.ejs", { recipe: data });
+  res.render("solution.ejs", { recipe: null });
 });
+
 
 app.post("/recipe", (req, res) => {
   switch (req.body.choice) {
@@ -30,8 +31,9 @@ app.post("/recipe", (req, res) => {
     default:
       break;
   }
-  res.redirect("/");
+   res.render("solution.ejs", { recipe: data });
 });
+ 
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
